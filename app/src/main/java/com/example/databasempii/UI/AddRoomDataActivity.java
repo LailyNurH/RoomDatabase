@@ -16,7 +16,7 @@ import com.example.databasempii.Data.Model.Mahasiswa;
 
 public class AddRoomDataActivity extends AppCompatActivity implements View.OnClickListener {
 
-    EditText etNama, etNim, etKejuruan, etAlamat;
+    EditText etNama, etNim, etKejuruan, etAlamat,etSKS;
     public final static String TAG_DATA_INTENT = "data_mahasiswa";
     private Mahasiswa mahasiswa;
     private MahasiswaDAO dao;
@@ -40,12 +40,14 @@ public class AddRoomDataActivity extends AppCompatActivity implements View.OnCli
         etNim = findViewById(R.id.etNim);
         etKejuruan = findViewById(R.id.etKejuruan);
         etAlamat = findViewById(R.id.etAlamat);
+        etSKS = findViewById(R.id.etSKS);
 
         if (mahasiswa != null) {
             etNama.setText(mahasiswa.getNama());
             etNim.setText(mahasiswa.getNim());
             etKejuruan.setText(mahasiswa.getKejuruan());
             etAlamat.setText(mahasiswa.getAlamat());
+            etSKS.setText(mahasiswa.getSks());
 
             btnTambah.setText("Ubah Data");
         }
@@ -72,6 +74,7 @@ public class AddRoomDataActivity extends AppCompatActivity implements View.OnCli
         mahasiswa.setNim(etNim.getText().toString());
         mahasiswa.setAlamat(etAlamat.getText().toString());
         mahasiswa.setKejuruan(etKejuruan.getText().toString());
+        mahasiswa.setSks(Integer.parseInt (etSKS.getText().toString()));
     }
 
 

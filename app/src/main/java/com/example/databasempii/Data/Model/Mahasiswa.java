@@ -22,19 +22,23 @@ public class Mahasiswa {
     @ColumnInfo(name = "alamat")
     private String alamat = "";
 
+    @ColumnInfo(name = "sks")
+    private int sks;
+
     @ColumnInfo(name = "gambar")
     private String gambar = "";
 
     public Mahasiswa() {
     }
 
-    public Mahasiswa(int id, String nama, String nim, String kejuruan, String alamat, String gambar) {
+    public Mahasiswa(int id, String nama, String nim, String kejuruan, String alamat,int sks, String gambar) {
         this.id = id;
         this.nama = nama;
         this.nim = nim;
         this.kejuruan = kejuruan;
         this.alamat = alamat;
         this.gambar = gambar;
+        this.sks = sks;
     }
 
     public int getId() {
@@ -45,13 +49,17 @@ public class Mahasiswa {
         this.id = id;
     }
 
-    public String getNama() { return nama; }
+    public String getNama() {
+        return nama;
+    }
 
     public void setNama(String nama) {
         this.nama = nama;
     }
 
-    public String getNim() { return nim; }
+    public String getNim() {
+        return nim;
+    }
 
     public void setNim(String nim) {
         this.nim = nim;
@@ -60,11 +68,15 @@ public class Mahasiswa {
     public String getKejuruan() {
         return kejuruan;
     }
+
     public void setKejuruan(String kejuruan) {
         this.kejuruan = kejuruan;
     }
 
-    public String getAlamat() { return alamat; }
+    public String getAlamat() {
+        return alamat;
+
+    }
 
     public void setAlamat(String alamat) {
         this.alamat = alamat;
@@ -78,4 +90,12 @@ public class Mahasiswa {
         this.gambar = gambar;
     }
 
+    public int getSks() {
+        return sks;
+
+    }
+
+    public void setSks(int sks) {this.sks = sks;
+
+    }
 }

@@ -3,7 +3,9 @@ package com.example.databasempii.UI;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,7 +22,7 @@ public class CrudActivity extends AppCompatActivity {
     private RecyclerView rvListMahasiswa;
     private FloatingActionButton fabTambah;
     private RecyclerViewAdapter adapter;
-
+    private AlertDialog.Builder builder;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,15 +30,27 @@ public class CrudActivity extends AppCompatActivity {
 
         rvListMahasiswa = findViewById(R.id.rv_list_mahasiswa);
         fabTambah = findViewById(R.id.fab_tambah_data);
-
         adapter = new RecyclerViewAdapter();
         rvListMahasiswa.setAdapter(adapter);
+        builder = new AlertDialog.Builder(this);
+
 
         adapter.setRemoveListener(new DataListListener() {
             @Override
             public void onRemoveClick(Mahasiswa mahasiswa) {
                 adapter.removeData(mahasiswa);
+                adapter.setRemoveListener(view -> builder.setTitle("Alert..!!")
+                        .setMessage("Apakah anda yakin untuk menghapus data")
+                        .setCancelable(true)
+                        .setPositiveButton("Yes", (dialog, which) -> {
+                            finish();
+                            startActivity(new Intent(CrudActivity.this, CrudActivity.class));
+                            Toast.makeText(builder.getContext(),"Berhasil Dihapus", Toast.LENGTH_SHORT).show();
+                        })
+                        .setNegativeButton("No", (dialog, which) -> dialog.cancel())
+                        .show());
             }
+
         });
 
         fabTambah.setOnClickListener(new View.OnClickListener() {
@@ -53,6 +67,7 @@ public class CrudActivity extends AppCompatActivity {
         super.onResume();
         List<Mahasiswa> datas = MyApp.getInstance().getDatabase().userDao().getAll();
         adapter.setData(datas);
+
     }
 
 }
