@@ -4,8 +4,6 @@ import android.app.Application;
 
 import androidx.room.Room;
 
-import com.example.databasempii.DatabaseMigrations;
-
 public class MyApp extends Application {
 private static MyApp INSTANCE;
     public static AppDatabase db;
@@ -20,7 +18,8 @@ private static MyApp INSTANCE;
                 AppDatabase.class,"database_mahasiswa")
                 .addMigrations(
                         DatabaseMigrations.MIGRATION_1_TO_2,
-                        DatabaseMigrations.MIGRATION_2_TO_3
+                        DatabaseMigrations.MIGRATION_2_TO_3,
+                        DatabaseMigrations.MIGRATION_3_TO_4
                 ).fallbackToDestructiveMigrationOnDowngrade()
                 .fallbackToDestructiveMigration()
                 .allowMainThreadQueries()

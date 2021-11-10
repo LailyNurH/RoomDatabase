@@ -20,7 +20,6 @@ import java.util.List;
 
 public class CrudActivity extends AppCompatActivity {
     private RecyclerView rvListMahasiswa;
-    private FloatingActionButton fabTambah;
     private RecyclerViewAdapter adapter;
     private AlertDialog.Builder builder;
     @Override
@@ -29,36 +28,16 @@ public class CrudActivity extends AppCompatActivity {
         setContentView(R.layout.activity_crud);
 
         rvListMahasiswa = findViewById(R.id.rv_list_mahasiswa);
-        fabTambah = findViewById(R.id.fab_tambah_data);
         adapter = new RecyclerViewAdapter();
         rvListMahasiswa.setAdapter(adapter);
-        builder = new AlertDialog.Builder(this);
-
 
         adapter.setRemoveListener(new DataListListener() {
             @Override
             public void onRemoveClick(Mahasiswa mahasiswa) {
                 adapter.removeData(mahasiswa);
-                adapter.setRemoveListener(view -> builder.setTitle("Alert..!!")
-                        .setMessage("Apakah anda yakin untuk menghapus data")
-                        .setCancelable(true)
-                        .setPositiveButton("Yes", (dialog, which) -> {
-                            finish();
-                            startActivity(new Intent(CrudActivity.this, CrudActivity.class));
-                            Toast.makeText(builder.getContext(),"Berhasil Dihapus", Toast.LENGTH_SHORT).show();
-                        })
-                        .setNegativeButton("No", (dialog, which) -> dialog.cancel())
-                        .show());
-            }
-
-        });
-
-        fabTambah.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(CrudActivity.this, AddRoomDataActivity.class));
             }
         });
+
 
     }
 

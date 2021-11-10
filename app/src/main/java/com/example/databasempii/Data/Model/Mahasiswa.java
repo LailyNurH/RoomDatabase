@@ -28,17 +28,29 @@ public class Mahasiswa {
     @ColumnInfo(name = "gambar")
     private String gambar = "";
 
+    @ColumnInfo(name = "image")
+    private String image = "";
+
     public Mahasiswa() {
     }
 
-    public Mahasiswa(int id, String nama, String nim, String kejuruan, String alamat,int sks, String gambar) {
+    public Mahasiswa(int id, String nama, String nim, String kejuruan, String alamat, int sks, String gambar, String image) {
         this.id = id;
         this.nama = nama;
         this.nim = nim;
         this.kejuruan = kejuruan;
         this.alamat = alamat;
-        this.gambar = gambar;
         this.sks = sks;
+        this.gambar = gambar;
+        this.image = image;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public int getId() {

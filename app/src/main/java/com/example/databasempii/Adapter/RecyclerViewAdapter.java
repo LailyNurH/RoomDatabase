@@ -1,6 +1,7 @@
 package com.example.databasempii.Adapter;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.databasempii.R;
 import com.example.databasempii.Data.Database.MyApp;
 import com.example.databasempii.Data.Model.Mahasiswa;
@@ -20,6 +24,7 @@ import com.example.databasempii.Data.common.DataListListener;
 import com.example.databasempii.UI.AddRoomDataActivity;
 import com.example.databasempii.UI.CrudActivity;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,6 +73,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             }
         }
     }
+
     public void setRemoveListener(DataListListener listener) {
         this.listener = listener;
     }
@@ -91,22 +97,35 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
 
-        private TextView tvNama, tvNim,tvAlamat,tvKejuruan,tvSks;
+        private TextView tvNama, tvNim, tvAlamat, tvKejuruan, tvSks;
         private ImageView btnHapus;
+        private ImageView imageView;
         private Mahasiswa data;
         private DataListListener listener;
         private AlertDialog.Builder rvListMahasiswa;
         private ListAdapter adapter;
+        private RequestOptions requestOptions;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
+
+            requestOptions = new RequestOptions()
+                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                    .skipMemoryCache(false)
+                    .centerCrop()
+                    .circleCrop()
+                    .placeholder(R.drawable.ic_account)
+                    .error(R.drawable.ic_account);
+
             tvNama = itemView.findViewById(R.id.tvNama);
             tvNim = itemView.findViewById(R.id.tvNim);
             tvAlamat = itemView.findViewById(R.id.tvAlamat);
             tvKejuruan = itemView.findViewById(R.id.tvKejuruan);
             btnHapus = itemView.findViewById(R.id.btn_hapus);
             tvSks = itemView.findViewById(R.id.tvSKS);
+            imageView = itemView.findViewById(R.id.image);
             btnHapus.setOnClickListener(this);
+
             itemView.setOnClickListener(this);
         }
 
@@ -119,15 +138,30 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             tvAlamat.setText(data.getAlamat());
             tvKejuruan.setText(data.getKejuruan());
             tvSks.setText(String.valueOf(data.getSks()));
+
+            loadImage(new File(data.getImage()));
         }
 
         @Override
         public void onClick(View view) {
             if (view.getId() == R.id.btn_hapus) {
-                MyApp.getInstance().getDatabase().userDao().delete(data);
-                listener.onRemoveClick(data);
-                Toast.makeText(itemView.getContext(), "Berhasil Dihapus", Toast.LENGTH_SHORT).show();
 
+                AlertDialog.Builder builder = new AlertDialog.Builder(btnHapus.getContext());
+                builder.setTitle("Peringatan !!! ")
+                        .setMessage("Apakah Anda Ingin Menghapus Data Ini ? ")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                MyApp.getInstance().getDatabase().userDao().delete(data);
+                                listener.onRemoveClick(data);
+                                Toast.makeText(itemView.getContext(), "Berhasil Dihapus", Toast.LENGTH_SHORT).show();
+                            }
+                        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                }).show();
             } else if (view.getId() == R.id.item_list) {
 
                 Intent intent = new Intent(itemView.getContext(), AddRoomDataActivity.class);
@@ -137,7 +171,18 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             }
 
         }
-    }
 
+        private void loadImage(File image) {
+            if (image == null) return;
+
+            Glide.with(itemView.getContext())
+                    .asBitmap()
+                    .apply(requestOptions)
+                    .load(image)
+                    .into(imageView);
+        }
+    }
 }
+
+
 

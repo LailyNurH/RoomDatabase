@@ -3,6 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/#ASISTENPRAKTIKUM/AS PROJECT/RoomDatabase/app/src/main/res/drawable/bg_circle.xml" value="0.22135416666666666" />
+        <entry key="..\:/#ASISTENPRAKTIKUM/AS PROJECT/RoomDatabase/app/src/main/res/drawable/ic_account.xml" value="0.22135416666666666" />
+        <entry key="..\:/#ASISTENPRAKTIKUM/AS PROJECT/RoomDatabase/app/src/main/res/drawable/ic_image.xml" value="0.1" />
+        <entry key="..\:/#ASISTENPRAKTIKUM/AS PROJECT/RoomDatabase/app/src/main/res/layout/activity_add_room_data.xml" value="0.20520833333333333" />
+        <entry key="..\:/#ASISTENPRAKTIKUM/AS PROJECT/RoomDatabase/app/src/main/res/layout/activity_crud.xml" value="0.15104166666666666" />
+        <entry key="..\:/#ASISTENPRAKTIKUM/AS PROJECT/RoomDatabase/app/src/main/res/layout/activity_room_data.xml" value="0.15104166666666666" />
+        <entry key="..\:/#ASISTENPRAKTIKUM/AS PROJECT/RoomDatabase/app/src/main/res/layout/activity_view_room_data.xml" value="0.20520833333333333" />
+        <entry key="..\:/#ASISTENPRAKTIKUM/AS PROJECT/RoomDatabase/app/src/main/res/layout/dialog_image_option.xml" value="0.1" />
+        <entry key="..\:/#ASISTENPRAKTIKUM/AS PROJECT/RoomDatabase/app/src/main/res/layout/item_mahasiswa.xml" value="0.15" />
         <entry key="..\:/Aqsal Dpa/Study/ANDROID STUDIO FILE/DatabaseMP2/app/src/main/res/drawable/ic_add.xml" value="0.1015" />
         <entry key="..\:/Aqsal Dpa/Study/ANDROID STUDIO FILE/DatabaseMP2/app/src/main/res/layout/activity_add_room_data.xml" value="0.16666666666666666" />
         <entry key="..\:/Aqsal Dpa/Study/ANDROID STUDIO FILE/DatabaseMP2/app/src/main/res/layout/activity_crud.xml" value="0.16666666666666666" />
