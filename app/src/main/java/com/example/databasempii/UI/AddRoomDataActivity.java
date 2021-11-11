@@ -135,7 +135,6 @@ public class AddRoomDataActivity extends AppCompatActivity implements View.OnCli
         try {
             fileImage = File.createTempFile(String.valueOf(System.currentTimeMillis()), ".jpg",
                     getExternalFilesDir(Environment.DIRECTORY_PICTURES));
-//            Uri imageUri = FileProvider.getUriForFile(this, BuildConfig.APPLICATION_ID + ".provider", fileImage);
             Uri imageUri = FileProvider.getUriForFile(this, "com.example.databasempii" + ".provider", fileImage);
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);

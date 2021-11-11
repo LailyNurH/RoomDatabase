@@ -24,5 +24,6 @@ public class DatabaseMigrations {
             database.execSQL("ALTER TABLE mahasiswa ADD COLUMN image TEXT DEFAULT ''");
         }
     };
+
 }
 

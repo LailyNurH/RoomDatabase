@@ -102,8 +102,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         private ImageView imageView;
         private Mahasiswa data;
         private DataListListener listener;
-        private AlertDialog.Builder rvListMahasiswa;
-        private ListAdapter adapter;
         private RequestOptions requestOptions;
 
         ViewHolder(@NonNull View itemView) {
@@ -124,8 +122,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             btnHapus = itemView.findViewById(R.id.btn_hapus);
             tvSks = itemView.findViewById(R.id.tvSKS);
             imageView = itemView.findViewById(R.id.image);
-            btnHapus.setOnClickListener(this);
 
+            btnHapus.setOnClickListener(this);
             itemView.setOnClickListener(this);
         }
 
